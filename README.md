@@ -1,7 +1,5 @@
 # HireStream ATS
 
-![HireStream ATS](public/logo.svg)
-
 > **A Premium, State-of-the-Art Applicant Tracking System.**
 > Built with React, TypeScript, Tailwind CSS, and a focus on "Clean-Tech" aesthetics.
 
