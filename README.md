@@ -5,6 +5,8 @@
 
 HireStream is a modern recruitment platform designed to streamline the hiring process with a visually stunning and highly interactive user interface. It features a comprehensive dashboard, drag-and-drop pipeline management, and detailed candidate profiles, all wrapped in a sophisticated glassmorphism design.
 
+### 🔗 [Live Demo](https://hire-stream-ats.vercel.app/)
+
 ---
 
 ## 🚀 Key Features

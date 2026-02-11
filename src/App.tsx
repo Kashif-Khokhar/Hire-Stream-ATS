@@ -18,6 +18,8 @@ function App() {
   const [currentView, setCurrentView] = useState<AppView>('dashboard');
   const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
   const [showJobForm, setShowJobForm] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   const renderContent = () => {
     switch (currentView) {
@@ -26,12 +28,12 @@ function App() {
       case 'pipeline':
         return (
           <>
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
               <div>
                 <h1 className="text-2xl font-black text-slate-900 italic">Recruitment Pipeline</h1>
                 <p className="text-slate-500 text-sm mt-1 font-medium italic">Manage and track your candidate progress across stages.</p>
               </div>
-              <button className="bg-brand-500 hover:bg-brand-600 text-white px-5 py-2.5 rounded-xl text-sm font-black shadow-lg shadow-brand-500/20 transition-all active:scale-95">
+              <button className="bg-brand-500 hover:bg-brand-600 text-white px-5 py-2.5 rounded-xl text-sm font-black shadow-lg shadow-brand-500/20 transition-all active:scale-95 w-full md:w-auto">
                 Add Candidate
               </button>
             </div>
@@ -56,10 +58,23 @@ function App() {
   return (
     <JobProvider>
       <div className="min-h-screen bg-slate-50 flex">
-        <Sidebar currentView={currentView} onNavigate={setCurrentView} />
-        <div className="flex-1 flex flex-col">
-          <Navbar />
-          <main className="flex-1 ml-64 p-10 overflow-x-auto min-h-[calc(100vh-64px)]">
+        <Sidebar
+          currentView={currentView}
+          onNavigate={(view) => {
+            setCurrentView(view);
+            setIsSidebarOpen(false); // Close mobile sidebar on navigate
+          }}
+          isOpen={isSidebarOpen}
+          onClose={() => setIsSidebarOpen(false)}
+          isCollapsed={isSidebarCollapsed}
+          toggleCollapse={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+        />
+        <div className={`flex-1 flex flex-col transition-all duration-300 ease-in-out ${isSidebarCollapsed ? 'lg:ml-20' : 'lg:ml-64'}`}>
+          <Navbar
+            onMenuClick={() => setIsSidebarOpen(true)}
+            isSidebarCollapsed={isSidebarCollapsed}
+          />
+          <main className="flex-1 p-4 md:p-10 overflow-x-hidden min-h-[calc(100vh-80px)]">
             <div className="max-w-[1600px] mx-auto animate-in fade-in slide-in-from-bottom-6 duration-700">
               {renderContent()}
             </div>
