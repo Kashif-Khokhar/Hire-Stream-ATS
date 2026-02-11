@@ -136,7 +136,7 @@ export const CandidateProfile: React.FC<CandidateProfileProps> = ({ candidate, o
                         </div>
 
                         <div className="space-y-4">
-                            {candidate.notes.map((note, idx) => (
+                            {candidate.notes.map((note) => (
                                 <div key={note.id} className="relative pl-6 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-100">
                                     <div className="absolute left-[-4px] top-2 w-2.4 h-2.4 rounded-full bg-slate-200 border-4 border-white" />
                                     <div className="bg-slate-50/50 p-5 rounded-2xl border border-slate-100/60 hover:border-brand-100 transition-colors">

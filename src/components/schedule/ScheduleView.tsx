@@ -3,8 +3,7 @@ import {
     Calendar as CalendarIcon,
     ChevronLeft,
     ChevronRight,
-    Clock,
-    MapPin
+    Clock
 } from 'lucide-react';
 import { cn } from '../../utils/cn';
 
